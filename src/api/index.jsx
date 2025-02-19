@@ -1,7 +1,10 @@
 import axios from "axios";
 
-const Api = axios.create({
+const api = axios.create({
   baseURL: "http://localhost:8000",
+  headers: {
+    "Content-Type": "multipart/form-data",
+  },
 });
 
-export default Api;
+export default api;
