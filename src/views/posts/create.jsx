@@ -1,34 +1,50 @@
+//import useState
 import { useState } from "react";
+
+//import useNavigate
 import { useNavigate } from "react-router-dom";
-import Api from "../../api";
+
+//import API
+import api from "../../api";
 
 export default function PostCreate() {
+  //define state
   const [image, setImage] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
+  //state validation
   const [errors, setErrors] = useState([]);
 
-  const naviGate = useNavigate();
+  //useNavigate
+  const navigate = useNavigate();
 
+  //method handle file change
   const handleFileChange = (e) => {
     setImage(e.target.files[0]);
   };
 
+  //method store post
   const storePost = async (e) => {
     e.preventDefault();
 
+    //init FormData
     const formData = new FormData();
 
+    //append data
     formData.append("image", image);
     formData.append("title", title);
     formData.append("content", content);
 
-    await Api.post("/api/posts", formData)
+    //send data with API
+    await api
+      .post("/api/posts", formData)
       .then(() => {
-        naviGate("/posts");
+        //redirect to posts index
+        navigate("/posts");
       })
       .catch((error) => {
+        //set errors response to state "errors"
         setErrors(error.response.data);
       });
   };
