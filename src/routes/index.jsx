@@ -11,7 +11,7 @@ function RouteIndex() {
       <Route path="/" element={<Home />} />
       <Route path="/posts" element={<PostIndex />} />
       <Route path="/posts/create" element={<PostCreate />} />
-      <Route path="/posts/edit" element={<PostEdit />} />
+      <Route path="/posts/edit/:id" element={<PostEdit />} />
     </Routes>
   );
 }
